@@ -16,28 +16,50 @@ Le SOC bloque les IPs malveillantes de deux façons :
 | `firewall-drop` | Bloque l'IP source sur l'agent attaqué (règle firewall locale à l'agent) | [Default active response scripts](https://documentation.wazuh.com/current/user-manual/capabilities/active-response/default-active-response-scripts.html) |
 | `remove-threat` | Suppression d'un fichier identifié comme malveillant (lié au FIM + VirusTotal, voir [FIM](fim.md)) | [Default active response scripts](https://documentation.wazuh.com/current/user-manual/capabilities/active-response/default-active-response-scripts.html) |
 
-## Règles déclenchant `firewall-drop`
+## Règles déclenchant une réponse active
 
-Confirmé dans le code du script (`soc_config.py`, `soc_clients.py`) — ces `rules_id` sont bloqués **nativement côté Wazuh Manager**, donc exclus du blocage local du script (voir `NATIVE_AR_CATEGORIES` dans [classification-alertes.md](../08-automatisation-soc/classification-alertes.md)) :
+Confirmé dans le code du script (`soc_config.py`, `soc_clients.py`) pour `firewall-drop` — ces `rules_id` sont bloqués **nativement côté Wazuh Manager**, donc exclus du blocage local du script (voir `NATIVE_AR_CATEGORIES` dans [classification-alertes.md](../08-automatisation-soc/classification-alertes.md)) :
 
-| `rules_id` | Catégorie |
-|---|---|
-| `5710`, `5712`, `5716`, `5720` | Brute force SSH |
-| `86601` | Scans réseau détectés via Suricata (décodeur Wazuh intégré) |
+| `rules_id` | Réponse | Catégorie |
+|---|---|---|
+| `5710`, `5712`, `5716`, `5720` | `firewall-drop` | Brute force SSH |
+| `86601` | `firewall-drop` | Scans réseau détectés via Suricata (décodeur Wazuh intégré) |
+| `87105` | `remove-threat` | Fichier identifié malveillant (voir [FIM](fim.md) et [VirusTotal](virustotal-integration.md)) |
 
-## Configuration (`ossec.conf`)
+## Configuration réelle (`/var/ossec/etc/ossec.conf`)
 
-> ⚠️ **À compléter** avec le bloc `<active-response>` exact déployé dans `/var/ossec/etc/ossec.conf` (`<timeout>`, agents ciblés). Squelette attendu, avec les `rules_id` confirmés ci-dessus :
+Trois blocs `<active-response>` sont déployés sur le Manager :
 
 ```xml
+<!-- Suppression de fichier malveillant (voir FIM + VirusTotal) -->
+<active-response>
+  <disabled>no</disabled>
+  <command>remove-threat</command>
+  <location>local</location>
+  <rules_id>87105</rules_id>
+</active-response>
+
+<!-- Brute force SSH — bloque l'IP sur l'agent attaqué -->
 <active-response>
   <disabled>no</disabled>
   <command>firewall-drop</command>
   <location>local</location>
-  <rules_id>5710,5712,5716,5720,86601</rules_id>
-  <timeout>600</timeout>
+  <rules_id>5710,5712,5716,5720</rules_id>
+  <timeout>7200</timeout>
+</active-response>
+
+<!-- Scans réseau détectés via Suricata — bloque sur l'agent scanné -->
+<active-response>
+  <disabled>no</disabled>
+  <command>firewall-drop</command>
+  <location>local</location>
+  <rules_id>86601</rules_id>
+  <timeout>7200</timeout>
 </active-response>
 ```
+
+- Les deux blocs `firewall-drop` bloquent l'IP pendant **7200s (2h)**, puis Wazuh la débloque automatiquement.
+- Le bloc `remove-threat` (rule `87105`) n'a **pas de `<timeout>`** : la suppression d'un fichier n'est pas une action réversible/temporaire, contrairement à un blocage IP.
 
 📖 Syntaxe complète du bloc `<active-response>` : [Active response reference (ossec.conf)](https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/active-response.html)
 
