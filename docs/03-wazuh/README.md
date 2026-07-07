@@ -19,15 +19,10 @@
 
 ## 🔗 Documentation officielle
 
-👉 👉 [@Wazuh_documenttation](https://documentation.wazuh.com/current/quickstart.html) 👈 👈
-
-
-Documentation 👉 👉 [@Wazuh_FIM_config](https://documentation.wazuh.com/current/proof-of-concept-guide/index.html) 👈 👈 
-
-
-Autre Source 👉 👉  [@Wazuh_Autre_source](https://documentation.wazuh.com/current/user-manual/capabilities/active-response/ar-use-cases/blocking-ssh-brute-force.html) 👈 👈
-
-C'est sur cette page que tu trouveras toujours la commande d'installation la plus à jour.
+- [Wazuh — Quickstart](https://documentation.wazuh.com/current/quickstart.html) — c'est sur cette page que tu trouveras toujours la commande d'installation la plus à jour.
+- [Wazuh — Guide pratique FIM (proof of concept)](https://documentation.wazuh.com/current/proof-of-concept-guide/index.html) — voir aussi [FIM](fim.md)
+- [Wazuh — Active Response, cas d'usage brute force SSH](https://documentation.wazuh.com/current/user-manual/capabilities/active-response/ar-use-cases/blocking-ssh-brute-force.html) — voir aussi [Active Response](active-response.md)
+- [Wazuh — Intégration VirusTotal](https://documentation.wazuh.com/current/user-manual/capabilities/malware-detection/virus-total-integration.html) — voir aussi [virustotal-integration.md](virustotal-integration.md)
 
 ---
 
