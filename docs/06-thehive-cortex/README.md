@@ -124,6 +124,38 @@ hostname -I
 
 ## Étape 5 — Intégrer Cortex avec TheHive
 
+### Comment les deux se combinent (le mécanisme, pas juste les clics)
+
+TheHive et Cortex sont **deux applications indépendantes** qui ne communiquent que par API REST — il n'y a pas de base de données partagée. Le lien se fait dans un seul sens : **TheHive appelle Cortex**, jamais l'inverse.
+
+```
+TheHive (Case + observable "1.2.3.4")
+        │
+        │  1. L'utilisateur (ou soc-automation) clique "Run analyzers"
+        │     sur l'observable, ou l'API POST /connector/cortex/job
+        ▼
+Cortex (reçoit l'IP, exécute VirusTotal_GetReport + AbuseIPDB)
+        │
+        │  2. Cortex exécute les scripts Python des analyzers
+        │     (voir cortex-analyzers.md), interroge les APIs externes
+        ▼
+Cortex renvoie un rapport JSON par analyzer (score, taxonomies...)
+        │
+        │  3. TheHive récupère le résultat via polling sur le job Cortex
+        │     et l'attache à l'observable dans le Case
+        ▼
+TheHive affiche les rapports sous l'observable
+```
+
+Concrètement, **3 conditions** doivent être réunies pour que ça marche :
+1. TheHive doit connaître l'adresse et une **clé API valide** de Cortex (configuré une fois, ci-dessous).
+2. Les analyzers doivent être **activés côté Cortex** avec leurs propres clés API externes (VirusTotal, AbuseIPDB) — voir [cortex-analyzers.md](cortex-analyzers.md).
+3. Le compte TheHive qui déclenche l'analyse doit avoir les droits `analyze` — c'est pour ça que l'organisation dédiée du script a besoin du bon profil, voir [organisation-setup.md](organisation-setup.md).
+
+`soc-automation/response_soc.py` automatise l'étape 1 (déclenche l'analyse dès qu'un case est créé) au lieu de cliquer manuellement sur "Run analyzers".
+
+### Configuration (à faire une fois)
+
 1. Connecte-toi à **Cortex** (`http://IP_VM:9001`)
 2. Crée un compte administrateur
 3. Crée une **Organisation**
@@ -131,8 +163,10 @@ hostname -I
 5. Génère une **clé API** pour cet utilisateur
 6. Connecte-toi à **TheHive** (`http://IP_VM:9000`)
 7. Aller dans **Administration → Cortex**
-8. Ajouter le serveur Cortex : `http://cortex.local:9001`
-9. Coller la clé API générée
+8. Ajouter le serveur Cortex : `http://cortex.local:9001` (nom du service Docker, pas `localhost` — les deux conteneurs se joignent via le réseau `SOC_NET` du [docker-compose.yml](docker-compose.yml))
+9. Coller la clé API générée à l'étape 5
+
+Ensuite, active les analyzers eux-mêmes : voir le tutoriel complet **[cortex-analyzers.md](cortex-analyzers.md)** (installation des dépendances, clés API VirusTotal/AbuseIPDB, et surtout **comment vérifier que ça fonctionne vraiment** avant de compter dessus).
 
 ---
 
