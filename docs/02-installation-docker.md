@@ -73,6 +73,11 @@ sudo swapon /swapfile
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 ```
 
+## Documentation officielle
+
+- [Docker Engine — documentation officielle](https://docs.docker.com/engine/)
+- [Docker Compose — référence](https://docs.docker.com/compose/)
+
 ---
 
 Suite : [Déploiement TheHive & Cortex](06-thehive-cortex/README.md)

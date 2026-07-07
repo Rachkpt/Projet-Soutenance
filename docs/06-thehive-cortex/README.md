@@ -201,6 +201,13 @@ TheHive 5
 
 ---
 
+## Documentation officielle
+
+- [TheHive 5 — documentation officielle](https://docs.strangebee.com/thehive/)
+- [Cortex — documentation officielle](https://docs.strangebee.com/cortex/)
+- [Cortex-Analyzers — dépôt GitHub (analyzers/responders)](https://github.com/TheHive-Project/Cortex-Analyzers)
+- [Docker Compose — référence](https://docs.docker.com/compose/)
+
 ## Auteur
 
 **12ak_H4ck** — Projet académique ESIG · Blue Team / SOC

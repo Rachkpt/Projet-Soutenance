@@ -332,6 +332,12 @@ sudo fail2ban-client set portscan unbanip IP_A_DEBANNIR
 
 ---
 
+## Documentation officielle
+
+- [Fail2ban — documentation officielle](https://github.com/fail2ban/fail2ban/wiki)
+- [Fail2ban — manuel des jails et filtres](https://github.com/fail2ban/fail2ban/wiki/HOWTO-configure-and-use-filters)
+- [iptables — Netfilter documentation](https://netfilter.org/documentation/)
+
 ## Auteur
 
 **12ak_H4ck** — Projet académique ESIG · Blue Team / SOC

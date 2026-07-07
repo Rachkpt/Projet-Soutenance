@@ -24,15 +24,19 @@
 
 ## Stack technique
 
-| Outil | Rôle |
-|---|---|
-| **Wazuh** | SIEM / EDR — détection sur les endpoints |
-| **Suricata** | IDS/IPS réseau |
-| **Fail2ban** | Protection contre force brute et scans de ports |
-| **TheHive 5** | Gestion des incidents de sécurité |
-| **Cortex** | Analyse automatique (VirusTotal, AbuseIPDB...) et réponse |
-| **Grafana / Prometheus** | Monitoring et dashboards temps réel |
-| **Script Python (`soc-automation/`)** | Corrélation, classification, réponse automatique, bot Telegram |
+| Outil | Rôle | Documentation officielle |
+|---|---|---|
+| **Wazuh** | SIEM / EDR — détection sur les endpoints | [documentation.wazuh.com](https://documentation.wazuh.com/current/index.html) |
+| **Suricata** | IDS/IPS réseau | [docs.suricata.io](https://docs.suricata.io/en/latest/) |
+| **Fail2ban** | Protection contre force brute et scans de ports | [wiki fail2ban](https://github.com/fail2ban/fail2ban/wiki) |
+| **TheHive 5** | Gestion des incidents de sécurité | [docs.strangebee.com/thehive](https://docs.strangebee.com/thehive/) |
+| **Cortex** | Analyse automatique (VirusTotal, AbuseIPDB...) et réponse | [docs.strangebee.com/cortex](https://docs.strangebee.com/cortex/) |
+| **Grafana** | Dashboards temps réel | [grafana.com/docs](https://grafana.com/docs/grafana/latest/) |
+| **Prometheus** | Collecte de métriques | [prometheus.io/docs](https://prometheus.io/docs/introduction/overview/) |
+| **Docker / Compose** | Déploiement TheHive/Cortex | [docs.docker.com](https://docs.docker.com/engine/) |
+| **Groq (LLM)** | Synthèse IA des analyses | [console.groq.com/docs](https://console.groq.com/docs/quickstart) |
+| **Telegram Bot API** | Bot d'administration à distance | [core.telegram.org/bots/api](https://core.telegram.org/bots/api) |
+| **Script Python (`soc-automation/`)** | Corrélation, classification, réponse automatique, bot Telegram | voir [docs/08](docs/08-automatisation-soc/README.md) |
 
 ## Auteur
 

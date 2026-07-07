@@ -48,3 +48,12 @@ soc-automation/
 ├── .env.example
 └── README.md
 ```
+
+## Documentation officielle des APIs utilisées
+
+- [Wazuh Indexer API (OpenSearch)](https://documentation.wazuh.com/current/user-manual/api/reference.html) — voir aussi [source-des-donnees.md](source-des-donnees.md)
+- [TheHive API](https://docs.strangebee.com/thehive/api/)
+- [Cortex API](https://docs.strangebee.com/cortex/api/)
+- [Groq API (LLM)](https://console.groq.com/docs/quickstart)
+- [Telegram Bot API](https://core.telegram.org/bots/api)
+- [python-telegram-bot — documentation](https://docs.python-telegram-bot.org/)
