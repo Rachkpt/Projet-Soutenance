@@ -2,6 +2,8 @@
 
 Les règles de classification sont définies dans `soc_config.py` (`DETECTION_RULES`, fonction `classify_alert()`). Chaque alerte Wazuh/Suricata est testée contre un niveau minimum (`min_level`), des `wazuh_groups`, des `suricata_categories` et une liste de mots-clés, dans cet ordre de priorité.
 
+📖 Référence des niveaux et groupes de règles Wazuh : [Wazuh — Ruleset overview](https://documentation.wazuh.com/current/user-manual/ruleset/index.html) · [Rule classification / levels](https://documentation.wazuh.com/current/user-manual/ruleset/rules-classification.html)
+
 ## Catégories (`AlertCategory`)
 
 | Catégorie | Niveau min | Déclencheurs principaux |

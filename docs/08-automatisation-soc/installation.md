@@ -26,8 +26,8 @@ sudo bash install.sh
 `install.sh` :
 - installe les dépendances Python (`requests`, `python-telegram-bot`, `python-dotenv`)
 - copie `.env.example` vers `.env` s'il n'existe pas déjà (sans écraser un `.env` existant)
-- crée la jail Fail2ban `soc-auto` (`/etc/fail2ban/jail.d/soc-auto.conf`)
-- crée et active 3 services systemd : `soc-script1`, `soc-script2`, `soc-telegram`
+- crée la jail Fail2ban `soc-auto` (`/etc/fail2ban/jail.d/soc-auto.conf`) — voir [Fail2ban](../05-fail2ban/README.md)
+- crée et active 3 services systemd : `soc-script1`, `soc-script2`, `soc-telegram` — voir [systemd.service reference](https://www.freedesktop.org/software/systemd/man/systemd.service.html)
 
 ## 4. Éditer `.env` puis démarrer les services
 

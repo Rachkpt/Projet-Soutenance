@@ -19,10 +19,22 @@ sudo ss -tulpn | grep :PORT
 
 ## Vérifier tous les services du SOC en un coup d'œil
 
+📖 Doc officielle systemd : [systemctl(1)](https://www.freedesktop.org/software/systemd/man/systemctl.html) · [journalctl(1)](https://www.freedesktop.org/software/systemd/man/journalctl.html)
+
 ```bash
 sudo systemctl status wazuh-manager wazuh-indexer wazuh-dashboard suricata fail2ban
 docker compose -f docs/06-thehive-cortex/docker-compose.yml ps
 sudo systemctl status surveillance-soc response-soc telegram-bot
+```
+
+## Dépannage Docker
+
+📖 Doc officielle : [Docker — troubleshoot the daemon](https://docs.docker.com/config/daemon/troubleshoot/) · [Docker Compose — CLI reference](https://docs.docker.com/compose/reference/)
+
+```bash
+docker compose logs --tail=50 <service>
+docker system df        # espace disque utilisé par Docker
+docker system prune     # nettoyer images/conteneurs orphelins (⚠️ vérifier avant)
 ```
 
 ## Connectivité réseau entre composants

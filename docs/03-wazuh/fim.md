@@ -4,6 +4,8 @@
 
 Le FIM Wazuh (module `syscheck`) surveille des fichiers/répertoires sur les agents. Les événements (création, modification, suppression) sont récupérés par `surveillance_soc.py` via `WazuhClient.get_fim_events()`, qui interroge l'[Indexer](../08-automatisation-soc/source-des-donnees.md) sur les événements `syscheck` des dernières minutes uniquement (jamais l'historique complet, pour éviter le flood).
 
+📖 Doc officielle — présentation générale : [File Integrity Monitoring overview](https://documentation.wazuh.com/current/user-manual/capabilities/file-integrity/index.html)
+
 ## Traitement (`process_fim_event` dans `surveillance_soc.py`)
 
 | Type d'événement | Action |
@@ -34,6 +36,10 @@ Si l'analyse Cortex/Groq identifie le fichier comme malveillant, la suite du tra
 
 > ⚠️ **À compléter** avec la configuration réelle du bloc `<syscheck>` dans `ossec.conf` (répertoires surveillés, fréquence de scan, `whodata`/`realtime` activé ou non).
 
+📖 Syntaxe complète du bloc `<syscheck>` : [Syscheck reference (ossec.conf)](https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/syscheck.html)
+
 ## Documentation officielle
 
-- [Wazuh FIM](https://documentation.wazuh.com/current/proof-of-concept-guide/index.html)
+- [File Integrity Monitoring — vue d'ensemble](https://documentation.wazuh.com/current/user-manual/capabilities/file-integrity/index.html)
+- [Syscheck — référence de configuration `ossec.conf`](https://documentation.wazuh.com/current/user-manual/reference/ossec-conf/syscheck.html)
+- [Guide pratique FIM (proof of concept)](https://documentation.wazuh.com/current/proof-of-concept-guide/index.html)

@@ -2,6 +2,8 @@
 
 `surveillance_soc.py` interroge en continu l'**Indexer Wazuh** (OpenSearch) pour récupérer les alertes, pas l'API du Manager.
 
+📖 Doc officielle : [Wazuh Indexer API](https://documentation.wazuh.com/current/user-manual/api/reference.html) · [Wazuh Manager API](https://documentation.wazuh.com/current/user-manual/api/reference.html) · [OpenSearch Query DSL (syntaxe des requêtes `_search`)](https://opensearch.org/docs/latest/query-dsl/)
+
 ## Indexer vs Manager API — les deux sont utilisées, mais pour des choses différentes
 
 | | Indexer (OpenSearch) | API Manager |

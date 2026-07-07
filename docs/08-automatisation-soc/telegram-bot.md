@@ -2,6 +2,8 @@
 
 `telegram_bot.py` fournit un bot d'administration à distance du SOC, avec un clavier de commandes persistant en plus des commandes slash.
 
+📖 Doc officielle : [Telegram Bot API](https://core.telegram.org/bots/api) · [python-telegram-bot — documentation](https://docs.python-telegram-bot.org/)
+
 ## Commandes
 
 | Commande | Rôle |
@@ -30,6 +32,8 @@ Un clavier de boutons persistant (`persistent_keyboard()`) reproduit l'essentiel
 ## Fiabilité au redémarrage
 
 Au démarrage, `telegram_bot.py` purge le backlog Telegram (`getUpdates` avec `offset=-1`) avant d'activer le menu — ça évite de rejouer d'anciennes commandes accumulées pendant que le bot était arrêté.
+
+📖 [Telegram Bot API — méthode `getUpdates`](https://core.telegram.org/bots/api#getupdates)
 
 ## Configuration
 
